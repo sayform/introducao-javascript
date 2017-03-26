@@ -1,0 +1,131 @@
+<html>
+    <head>
+    </head>
+    <body>
+      <!-- 1 -->
+      <table>
+        <thead>
+          <th>Salada</th>
+          <th>Prato Principal</th>
+          <th>Acompanhamento</th>
+        <thead>
+        <tbody>
+          <tr class="prato-do-dia" id="segunda">
+              <td class='salada'>Alface e Tomate</td>
+              <td class='principal'>Frango Grelhado</td>
+              <td class='acompanhamento'>Arroz e Feijão preto</td>
+          </tr>
+          ...Outros dias da semana
+          <tr class="prato-do-dia" id="sexta">
+              <td class='salada'>Salada de Batata</td>
+              <td class='principal'>Macarrão com molho branco</td>
+              <td class='acompanhamento'>Milho, ervilha e brócolis</td>
+          </tr>
+        </tbody>
+        </table>
+
+        <!-- 2 -->
+        <ul class="lista-produtos">
+          <li class="produto">Web cam</li>
+          <li class="produto">Microfone</li>
+          <li class="produto">Fundo verde</li>
+          <li class="produto">Notebook</li>
+        </ul>
+
+        <!-- 3 -->
+        <input class="frase"><button class="botao">Copiar</button>
+        <span class="copia"></span>
+
+        <!-- 4 -->
+        <ul class="afazeres">
+          <li>Ir ao médico</li>
+          <li>Trocar a senha do Wifi</li>
+          <li>Estudar Javascript</li>
+        </ul>
+        <form class="adicionar-tarefa">
+            <input type="text" name="tarefa">
+            <button id="botao-adicionar">Salvar</button>
+        </form>
+
+
+        <div id="inner">Testando Inner Html</div>
+
+        <p id="meu-nome">Meu nome é Sammy</p>
+
+    </body>
+
+
+    <script>
+
+        var meuNome = document.querySelector("#meu-nome");
+        meuNome.innerHTML = "Meu nome é João";
+
+
+        /* 5- Função que captura o conteúdo de um elemnto com o innerHTML */
+        var conteudoInner = document.querySelector("#inner").innerHTML;
+        console.log(conteudoInner);
+
+        /* 4- Função para adicionar um novo valor/tarefa na lista */
+        var form = document.querySelector(".adicionar-tarefa");
+        var ul = document.querySelector(".afazeres");
+        var botaoTarefa = document.querySelector("#botao-adicionar");
+
+        botaoTarefa.addEventListener('click', adicionarTarefa);
+
+        function adicionarTarefa(event) {
+          /* função que impede o comportamento padrão de um elemento (form) */
+          event.preventDefault();
+
+          /* cria um elemento */
+          var criarLi = document.createElement("li");
+          /* adiciona o elemento filho ao pai */
+          ul.appendChild(criarLi);
+
+          /* Seleciona o valor de um elemento através do atibuto "name" */
+          var input = form.tarefa.value;
+
+          criarLi.textContent = input;
+        }
+
+
+
+        /* 3- Função que copia a entrada de um usuário em um input
+            para outro lugar e limpa o input de entrada */
+        var botao = document.querySelector(".botao");
+        botao.addEventListener('click', copiar);
+
+        var campoInput = document.querySelector(".frase");
+        var copia = document.querySelector(".copia");
+
+        function copiar() {
+          copia.textContent = campoInput.value;
+          campoInput.value = " ";
+        }
+        /* fim */
+
+        /* 2- Função para mostrar o nome dos produtos em uma lista.
+          Utilizando o querySelectorAll e um for para percorrer */
+        var produtos = document.querySelectorAll(".produto");
+
+        for (var i = 0; i < produtos.length; i++) {
+          produto = produtos[i]
+          var valor = produto.textContent;
+          console.log(valor);
+        }
+        /* fim */
+
+        /* Função que exibe o conteúdo de uma TD.
+            Utilizando o querySelector e textContent */
+        var dia = document.querySelector("#segunda");
+        var salada = dia.querySelector(".salada").textContent;
+        var principal = dia.querySelector(".principal").textContent;
+        var acompanhamento = dia.querySelector(".acompanhamento").textContent;
+
+        console.log("Prato do Dia!");
+        console.log(salada);
+        console.log(principal);
+        console.log(acompanhamento);
+        /* fim */
+    </script>
+
+</hmtl>
